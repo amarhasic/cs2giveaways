@@ -45,7 +45,6 @@
 	<div class="bg-[#1a1d24] border-b border-white/5 py-1 text-xs font-medium text-center text-gray-400 hidden md:block">
 		<span class="mx-2"><span class="text-green-400">●</span> New Codes Added Daily</span>
 		<span class="mx-2 text-gray-600">|</span>
-		<!-- Rough calculation of daily value across major sites (Roll, Hellcase, Keydrop etc) -->
 		<span class="mx-2"><span class="text-yellow-500">★</span> $25,000+ Daily Giveaways</span>
 		<span class="mx-2 text-gray-600">|</span>
 		<span class="mx-2">🎁 Best Daily Free Case: <button class="text-white hover:underline cursor-pointer bg-transparent border-0 p-0 inline">Claim Now</button></span>
@@ -53,7 +52,8 @@
 
 	<!-- Header -->
 	<header class="sticky top-0 z-50 w-full border-b border-white/5 bg-[#0f1115]/80 backdrop-blur-md supports-[backdrop-filter]:bg-[#0f1115]/60">
-		<div class="container mx-auto px-4 h-20 flex items-center justify-between">
+		<!-- CHANGED: Added max-w-6xl for narrower header alignment -->
+		<div class="container mx-auto max-w-6xl px-4 h-20 flex items-center justify-between">
 			
 			<!-- Logo Area: Bigger, Transparent, No Border -->
 			<a href="/" class="flex items-center gap-3 group" onclick={closeMobileMenu}>
@@ -152,7 +152,8 @@
 
 	<!-- Footer -->
 	<footer class="bg-[#0b0c0f] border-t border-white/5 pt-16 pb-8">
-		<div class="container mx-auto px-4">
+		<!-- CHANGED: Added max-w-6xl for narrower footer alignment -->
+		<div class="container mx-auto max-w-6xl px-4">
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 				<!-- Brand Column -->
 				<div class="space-y-4">
@@ -191,12 +192,18 @@
 					</ul>
 				</div>
 
-				<!-- Removed 18+ Disclaimer Block -->
+				<!-- New Column: Made By Digipulation -->
+				<!-- CHANGED: Stack vertically, centered alignment -->
+				<div class="flex flex-col items-start lg:items-center space-y-2">
+					<h3 class="text-white font-display font-bold uppercase text-sm tracking-wider">Made by:</h3>
+					<a href="https://www.digipulation.com" target="_blank" rel="noopener noreferrer" class="transition-opacity hover:opacity-80">
+						<img src="/digipulation.png" alt="Digipulation" width="225" height="45" class="h-auto max-w-[225px]" />
+					</a>
+				</div>
 			</div>
 
 			<div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
 				<p>&copy; {currentYear} CS2Giveaways. All rights reserved. Not affiliated with Valve Corp.</p>
-				<!-- Removed GamCare/BeGambleAware links -->
 			</div>
 		</div>
 	</footer>
