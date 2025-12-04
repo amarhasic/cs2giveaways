@@ -15,7 +15,7 @@
 		{ label: 'Free Cases', href: '/cases' },
 		{ label: 'Giveaways', href: '/giveaways' },
 		{ label: 'Top Sites', href: '/sites' },
-		{ label: 'Blog', href: '/blog' }
+		{ label: 'Free Skins Path', href: '/freeskinspath' }
 	];
 
 	function toggleMobileMenu() {
@@ -45,7 +45,7 @@
 	<div class="bg-[#1a1d24] border-b border-white/5 py-1 text-xs font-medium text-center text-gray-400 hidden md:block">
 		<span class="mx-2"><span class="text-green-400">●</span> New Codes Added Daily</span>
 		<span class="mx-2 text-gray-600">|</span>
-		<span class="mx-2"><span class="text-yellow-500">★</span> $25,000+ Daily Giveaways</span>
+		<span class="mx-2"><span class="text-yellow-500">★</span> Up-to-date Daily Giveaways</span>
 		<span class="mx-2 text-gray-600">|</span>
 		<span class="mx-2">🎁 Best Daily Free Case: <button class="text-white hover:underline cursor-pointer bg-transparent border-0 p-0 inline">Claim Now</button></span>
 	</div>
