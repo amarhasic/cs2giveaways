@@ -151,11 +151,11 @@
 						The premier destination for CS2 skins, promo codes, and honest site reviews. We help you get more value from your favorite games.
 					</p>
 					<div class="flex gap-4 pt-2">
-						<a href="/" class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#1DA1F2] hover:text-white transition-colors" aria-label="Twitter">
-							<span class="sr-only">Twitter</span>
-							<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-						</a>
-					</div>
+    <a href="https://x.com/cs2giveawayspro" class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#1DA1F2] hover:text-white transition-colors" aria-label="Twitter">
+        <span class="sr-only">Twitter</span>
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </a>
+</div>
 				</div>
 
 				<!-- Earn Links -->
@@ -164,8 +164,7 @@
 					<ul class="space-y-2 text-sm text-gray-500">
 						<li><a href="/promos" class="hover:text-yellow-500 transition-colors">Promo Codes</a></li>
 						<li><a href="/cases" class="hover:text-yellow-500 transition-colors">Free Cases</a></li>
-						<li><a href="/bonuses" class="hover:text-yellow-500 transition-colors">Deposit Bonuses</a></li>
-						<li><a href="/referrals" class="hover:text-yellow-500 transition-colors">Referral Programs</a></li>
+						<li><a href="/sites" class="hover:text-yellow-500 transition-colors">Best CS2 Sites</a></li>
 					</ul>
 				</div>
 

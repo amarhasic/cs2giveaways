@@ -1,9 +1,33 @@
 <script>
+	import { onMount } from 'svelte';
+	
 	let wheelRotation = $state(0);
 	let isDragging = $state(false);
 	let startX = $state(0);
 	let startRotation = $state(0);
 	let wheelElement = $state(null);
+
+	// Load Twitter widgets script
+	onMount(() => {
+		// Check if the script is already loaded
+		if (!window.twttr) {
+			const script = document.createElement('script');
+			script.async = true;
+			script.src = 'https://platform.twitter.com/widgets.js';
+			script.charset = 'utf-8';
+			document.body.appendChild(script);
+			
+			// Initialize widgets when script loads
+			script.onload = () => {
+				if (window.twttr && window.twttr.widgets) {
+					window.twttr.widgets.load();
+				}
+			};
+		} else if (window.twttr && window.twttr.widgets) {
+			// If already loaded, just refresh the widgets
+			window.twttr.widgets.load();
+		}
+	});
 
 	const exclusiveOffers = [
 		{
@@ -337,14 +361,24 @@
 						<span class="text-white font-medium">CS2 Giveaways Feed</span>
 					</div>
 					
-					<div class="p-4 min-h-[450px] flex items-center justify-center" id="twitter-feed-container">
-						<div class="text-center space-y-4 text-gray-500">
-							<svg class="w-12 h-12 mx-auto opacity-50" viewBox="0 0 24 24" fill="currentColor">
-								<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-							</svg>
-							<p class="text-sm">Twitter feed will appear here</p>
-							<p class="text-xs opacity-70">Configure at publish.twitter.com</p>
-						</div>
+					<div class="p-4 min-h-[450px]" id="twitter-feed-container">
+						<!-- Twitter Timeline Widget -->
+						<a
+							class="twitter-timeline"
+							data-lang="en"
+							data-theme="dark"
+							data-height="450"
+							data-chrome="noheader nofooter noborders transparent"
+							href="https://twitter.com/cs2giveawayspro?ref_src=twsrc%5Etfw"
+						>
+							<!-- Fallback content while loading -->
+							<div class="text-center space-y-4 text-gray-500 py-8">
+								<svg class="w-12 h-12 mx-auto opacity-50 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+									<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+								</svg>
+								<p class="text-sm">Loading tweets from @cs2giveawayspro...</p>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
