@@ -9,7 +9,6 @@
 		{ label: 'Home', href: '/' },
 		{ label: 'Promo Codes', href: '/promos', badge: 'Hot' },
 		{ label: 'Free Cases', href: '/cases' },
-		{ label: 'Giveaways', href: '/giveaways' },
 		{ label: 'Top Sites', href: '/sites' }
 	];
 
@@ -25,7 +24,24 @@
 </script>
 
 <svelte:head>
-	<title>CS2 Giveaways - Daily Skins & Promo Codes</title>
+	<title>CS2 Giveaways | Win Free Skins, Cases & Promo Codes Daily</title>
+	<meta name="description" content="Join CS2 Giveaways to win free CS2 skins, open daily free cases, and get exclusive promo codes for top CS2 sites. Spin the wheel and claim your rewards!" />
+	<meta name="keywords" content="CS2 giveaways, free CS2 skins, CS2 cases, CS2 promo codes, free skin sites, CSGO skins, win skins" />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://cs2giveaways.com/" />
+	<meta property="og:title" content="CS2 Giveaways | Win Free Skins, Cases & Promo Codes Daily" />
+	<meta property="og:description" content="Join CS2 Giveaways to win free CS2 skins, open daily free cases, and get exclusive promo codes for top CS2 sites. Spin the wheel and claim your rewards!" />
+	<meta property="og:image" content="https://cs2giveaways.com/og-image.jpg" />
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://cs2giveaways.com/" />
+	<meta property="twitter:title" content="CS2 Giveaways | Win Free Skins, Cases & Promo Codes Daily" />
+	<meta property="twitter:description" content="Join CS2 Giveaways to win free CS2 skins, open daily free cases, and get exclusive promo codes for top CS2 sites. Spin the wheel and claim your rewards!" />
+	<meta property="twitter:image" content="https://cs2giveaways.com/og-image.jpg" />
+
 	<link rel="icon" href="/favicon.png" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +64,7 @@
 			<!-- Logo -->
 			<a href="/" class="flex items-center gap-3 group" onclick={closeMobileMenu}>
 				<div class="relative w-11 h-11 shrink-0 flex items-center justify-center">
-					<img src="/logo.png" alt="CS2G" width="44" height="44" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
+					<img src="/logo.png" alt="CS2 Giveaways Logo" width="44" height="44" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
 				</div>
 				<div class="flex flex-col">
 					<span class="font-display font-bold text-2xl text-white leading-none tracking-wide group-hover:text-yellow-400 transition-colors">
@@ -144,7 +160,7 @@
 				<!-- Brand -->
 				<div class="space-y-4">
 					<div class="flex items-center gap-2">
-						<img src="/logo.png" alt="Logo" width="32" height="32" class="w-8 h-8 opacity-80" />
+						<img src="/logo.png" alt="CS2 Giveaways Logo" width="32" height="32" class="w-8 h-8 opacity-80" />
 						<span class="font-display font-bold text-lg text-white">CS2<span class="text-gray-500">GIVEAWAYS</span></span>
 					</div>
 					<p class="text-gray-500 text-sm leading-relaxed">
