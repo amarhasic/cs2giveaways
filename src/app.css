@@ -1,2 +1,17 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+@import '@fontsource/chakra-petch/400.css';
+@import '@fontsource/chakra-petch/500.css';
+@import '@fontsource/chakra-petch/600.css';
+@import '@fontsource/chakra-petch/700.css';
 @plugin '@tailwindcss/typography';
+
+@theme {
+  --font-sans: 'JetBrains Mono Variable', monospace;
+  --font-mono: 'JetBrains Mono Variable', monospace;
+  --font-display: 'Chakra Petch', sans-serif;
+}
+
+body {
+  font-family: 'JetBrains Mono Variable', monospace;
+}

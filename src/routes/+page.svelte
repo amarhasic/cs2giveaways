@@ -517,10 +517,10 @@
 				<text x="80" y="44" fill="#eab308" font-size="24" filter="url(#glow)">★</text>
 				<text x="360" y="44" fill="#eab308" font-size="24" filter="url(#glow)">★</text>
 				
-				<text x="225" y="32" text-anchor="middle" fill="url(#goldGradient)" font-family="Rajdhani, sans-serif" font-weight="700" font-size="28" letter-spacing="2" filter="url(#glow)">
+				<text x="225" y="32" text-anchor="middle" fill="url(#goldGradient)" font-family="Chakra Petch, sans-serif" font-weight="700" font-size="28" letter-spacing="2" filter="url(#glow)">
 					CS2GIVEAWAYS
 				</text>
-				<text x="225" y="58" text-anchor="middle" fill="#ffffff" font-family="Rajdhani, sans-serif" font-weight="600" font-size="18" letter-spacing="5" opacity="0.9">
+				<text x="225" y="58" text-anchor="middle" fill="#ffffff" font-family="Chakra Petch, sans-serif" font-weight="600" font-size="18" letter-spacing="5" opacity="0.9">
 					EXCLUSIVES
 				</text>
 			</svg>
@@ -866,7 +866,7 @@
 	/* Key-Drop Banner Container */
 	.keydrop-banner-container {
 		background: linear-gradient(to right, #0a0a1a, #0f1029, #0a0a1a);
-		height: 120px;
+		height: 126px;
 		position: relative;
 		display: block;
 	}
@@ -876,26 +876,26 @@
 		height: 800px;
 		border: none;
 		display: block;
-		margin-top: -480px;
+		margin-top: -456px;
 	}
 
 	@media (min-width: 768px) {
 		.keydrop-banner-container {
-			height: 140px;
+			height: 147px;
 		}
 		.keydrop-banner-iframe {
 			height: 850px;
-			margin-top: -500px;
+			margin-top: -475px;
 		}
 	}
 
 	@media (min-width: 1024px) {
 		.keydrop-banner-container {
-			height: 160px;
+			height: 168px;
 		}
 		.keydrop-banner-iframe {
 			height: 900px;
-			margin-top: -520px;
+			margin-top: -494px;
 		}
 	}
 </style>

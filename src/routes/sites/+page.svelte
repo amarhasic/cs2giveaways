@@ -6,7 +6,7 @@
 			tagline: 'The OG CS2 Casino',
 			rating: 4.8,
 			image: '/csgoempire.jpg',
-			affiliateUrl: 'https://csgoempire.com/r/catweazle',
+			affiliateUrl: 'https://csgoempire.com/r/digipulation',
 			features: ['Roulette', 'Coinflip', 'Cases', 'Case Battles', 'Match Betting'],
 			bonuses: ['Daily Chests', 'Chat Rain', 'Free Cases'],
 			pros: [
@@ -33,7 +33,7 @@ When using it, it never felt like some shady pop-up casino – the license info,
 			tagline: 'Turbo-Charged Case Opening',
 			rating: 4.5,
 			image: '/keydrop.jpg',
-			affiliateUrl: 'https://kd.link/?code=CATWZ',
+			affiliateUrl: 'https://kd.link/?code=DIGIPULATION',
 			features: ['Custom Cases', 'Case Battles', 'Upgrades', 'Contracts'],
 			bonuses: ['Daily Free Case', 'Promo Codes', 'Events'],
 			pros: [
@@ -87,7 +87,7 @@ The catch is that the site becomes noticeably more picky the moment you try to c
 			tagline: 'Modern & Crypto-Friendly',
 			rating: 4.6,
 			image: '/clash.jpg',
-			affiliateUrl: 'https://clash.gg/r/CATW',
+			affiliateUrl: 'https://clash.gg/r/DIGIPULATION',
 			features: ['Case Battles', 'Upgrader', 'Plinko', 'Provably Fair'],
 			bonuses: ['3 Free Cases', 'Crypto Bonuses', 'Referral Rewards'],
 			pros: [

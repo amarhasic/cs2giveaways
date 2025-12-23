@@ -43,9 +43,6 @@
 	<meta property="twitter:image" content="https://cs2giveaways.com/og-image.jpg" />
 
 	<link rel="icon" href="/favicon.png" />
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
 </svelte:head>
 
 <div class="app-container min-h-screen bg-[#0f1115] text-gray-300 font-sans selection:bg-yellow-500/30 selection:text-yellow-200 flex flex-col">
@@ -213,13 +210,15 @@
 
 <style>
 	:global(body) {
-		font-family: 'Inter', sans-serif;
+		font-family: 'JetBrains Mono Variable', monospace;
+		margin: 0;
 	}
 	
 	.font-display {
-		font-family: 'Rajdhani', sans-serif;
+		font-family: 'Chakra Petch', sans-serif;
+		font-weight: 600;
 	}
-
+ 
 	:global(::-webkit-scrollbar) {
 		width: 8px;
 	}

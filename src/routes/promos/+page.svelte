@@ -391,6 +391,6 @@
 
 <style>
 	.font-display {
-		font-family: 'Rajdhani', sans-serif;
+		font-family: 'Chakra Petch', sans-serif;
 	}
 </style>
