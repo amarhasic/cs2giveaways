@@ -21,6 +21,19 @@
 	}
 
 	let currentYear = new Date().getFullYear();
+
+	let onlineUsers = $state(142);
+
+	$effect(() => {
+		const interval = setInterval(() => {
+			// Randomly fluctuate between -3 and +5 users
+			onlineUsers += Math.floor(Math.random() * 9) - 3;
+			if (onlineUsers < 110) onlineUsers = 110;
+			if (onlineUsers > 350) onlineUsers = 350;
+		}, 3000);
+
+		return () => clearInterval(interval);
+	});
 </script>
 
 <svelte:head>
@@ -68,6 +81,19 @@
 	<meta property="twitter:image" content="https://cs2giveaways.com/og-image.jpg" />
 
 	<link rel="icon" href="/favicon.png" />
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "CS2 Giveaways",
+		"url": "https://cs2giveaways.com",
+		"logo": "https://cs2giveaways.com/logo.png",
+		"sameAs": [
+			"https://x.com/cs2giveawayspro"
+		],
+		"description": "The premier destination for CS2 skins, daily free cases, and verified promo codes."
+	}
+	</script>`}
 </svelte:head>
 
 <div
@@ -109,6 +135,20 @@
 					>
 				</div>
 			</a>
+
+			<!-- Live Visitors -->
+			<div
+				class="ml-6 hidden items-center gap-2 rounded-full border border-green-500/20 bg-green-500/5 px-3 py-1.5 text-xs font-bold text-green-400 md:flex"
+			>
+				<span class="relative flex h-2 w-2">
+					<span
+						class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+					></span>
+					<span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+				</span>
+				<span class="text-white">{onlineUsers}</span>
+				<span class="font-medium text-gray-500">Online</span>
+			</div>
 
 			<!-- Desktop Nav -->
 			<nav class="hidden items-center gap-1 lg:flex">
@@ -303,6 +343,9 @@
 						</li>
 						<li>
 							<a href="/contact" class="transition-colors hover:text-yellow-500">Contact Us</a>
+						</li>
+						<li>
+							<a href="/blog" class="transition-colors hover:text-yellow-500">Blog</a>
 						</li>
 					</ul>
 				</div>
