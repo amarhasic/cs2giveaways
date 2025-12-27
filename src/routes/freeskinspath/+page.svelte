@@ -1,440 +1,510 @@
 <script>
 	import { onMount } from 'svelte';
-	
+
 	let visibleSteps = $state([]);
-	let totalValue = $state(0);
-	let animatedValue = $state(0);
-	
+
 	const offers = [
 		{
 			id: 1,
 			site: 'CSGOEmpire',
 			reward: '1 Free Case',
-			value: 0.50,
-			description: 'The OG CS2 gambling site. Sign up and claim your free case instantly!',
-			steps: [
-				'Click the button below to visit CSGOEmpire',
-				'Sign in with your Steam account',
-				'Your free case will be automatically credited!'
-			],
+			value: 0.5,
+			description: 'The OG CS2 gambling site with instant case rewards.',
 			url: 'https://csgoempire.com/r/digipulation',
-			color: 'from-red-600 to-red-800',
-			bgColor: 'bg-red-500/10',
-			borderColor: 'border-red-500/30',
-			icon: '👑',
+			code: 'digipulation',
+			accentColor: '#dc2626',
 			tag: 'INSTANT'
 		},
 		{
 			id: 2,
 			site: 'Key-Drop',
 			reward: '1 Free Case',
-			value: 0.50,
-			description: 'One of the biggest case opening sites. Get your free case with our code!',
-			steps: [
-				'Click the button to go to Key-Drop',
-				'Create an account or log in',
-				'Claim your free case!'
-			],
+			value: 0.5,
+			description: 'Massive case opening platform with daily bonuses.',
 			url: 'https://kd.link/?code=DIGIPULATION',
-			color: 'from-blue-600 to-blue-800',
-			bgColor: 'bg-blue-500/10',
-			borderColor: 'border-blue-500/30',
-			icon: '🔑',
+			code: 'DIGIPULATION',
+			accentColor: '#2563eb',
 			tag: 'POPULAR'
 		},
 		{
 			id: 3,
 			site: 'Howl.gg',
 			reward: '1 Free Case',
-			value: 0.50,
-			description: 'Premium case battles and upgrades. Start with a free case on us!',
-			steps: [
-				'Visit Howl.gg through our link',
-				'Connect your Steam account',
-				'Your free case is waiting for you!'
-			],
+			value: 0.5,
+			description: 'Premium case battles and upgrades platform.',
 			url: 'https://howl.gg/r/dpl',
-			color: 'from-purple-600 to-purple-800',
-			bgColor: 'bg-purple-500/10',
-			borderColor: 'border-purple-500/30',
-			icon: '🐺',
-			tag: 'NEW'
+			code: 'dpl',
+			accentColor: '#7c3aed',
+			tag: 'BATTLES'
 		},
 		{
 			id: 4,
 			site: 'Clash.gg',
 			reward: '3 Free Cases',
-			value: 1.50,
-			description: 'The best value! Get 3 FREE cases just for signing up. Triple the chances!',
-			steps: [
-				'Click to visit Clash.gg',
-				'Sign up with Steam',
-				'Go to the affiliate page',
-				'Claim your 3 FREE cases!'
-			],
+			value: 1.5,
+			description: 'Best value - triple the cases, triple the chances!',
 			url: 'https://clash.gg/r/DIGIPULATION',
-			color: 'from-green-600 to-green-800',
-			bgColor: 'bg-green-500/10',
-			borderColor: 'border-green-500/30',
-			icon: '⚔️',
+			code: 'DIGIPULATION',
+			accentColor: '#059669',
 			tag: 'BEST VALUE'
 		},
 		{
 			id: 5,
 			site: 'DatDrop',
 			reward: 'Daily Free Case',
-			value: 0.50,
-			description: 'Get a FREE case every single day! Come back daily for more chances to win!',
-			steps: [
-				'Visit DatDrop through our link',
-				'Create your account',
-				'Claim your daily free case',
-				'Come back tomorrow for another!'
-			],
+			value: 0.5,
+			description: 'Come back every day for a new free case!',
 			url: 'https://datdrop.com/p/digipulation',
-			color: 'from-orange-600 to-orange-800',
-			bgColor: 'bg-orange-500/10',
-			borderColor: 'border-orange-500/30',
-			icon: '📦',
+			code: 'digipulation',
+			accentColor: '#f59e0b',
 			tag: 'DAILY'
+		},
+		{
+			id: 6,
+			site: 'Farmskins',
+			reward: '$1 Free + Daily Cases',
+			value: 1.0,
+			description: 'Instant $1 balance plus daily free cases!',
+			url: 'https://farmskins.com/ref-digipulation',
+			code: 'digipulation',
+			accentColor: '#ec4899',
+			tag: 'FREE BALANCE'
 		}
 	];
-	
+
+	let showCopyToast = $state(false);
+
 	onMount(() => {
-		// Calculate total value
-		totalValue = offers.reduce((sum, offer) => sum + offer.value, 0);
-		
-		// Animate the value counter
-		const duration = 2000;
-		const steps = 60;
-		const increment = totalValue / steps;
-		let current = 0;
-		
-		const interval = setInterval(() => {
-			current += increment;
-			if (current >= totalValue) {
-				animatedValue = totalValue;
-				clearInterval(interval);
-			} else {
-				animatedValue = current;
-			}
-		}, duration / steps);
-		
-		// Animate steps appearing
 		offers.forEach((_, index) => {
-			setTimeout(() => {
-				visibleSteps = [...visibleSteps, index];
-			}, 200 * (index + 1));
+			setTimeout(
+				() => {
+					visibleSteps = [...visibleSteps, index];
+				},
+				120 * (index + 1)
+			);
 		});
-		
-		return () => clearInterval(interval);
 	});
-	
+
 	function handleClaim(url) {
 		window.open(url, '_blank');
 	}
-	
-	function scrollToTop() {
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+
+	async function copyCode(code) {
+		try {
+			await navigator.clipboard.writeText(code);
+			showCopyToast = true;
+			setTimeout(() => {
+				showCopyToast = false;
+			}, 2000);
+		} catch (err) {
+			console.error('Failed to copy:', err);
+		}
 	}
+
+	// SEO Data
+	const schemaOrg = {
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'HowTo',
+				name: 'How to Get Free CS2 Skins & Cases',
+				description:
+					'Follow this step-by-step path to claim 8+ free CS2 cases from trusted sites like Empire, Key-Drop, and Farmskins.',
+				step: offers.map((offer, index) => ({
+					'@type': 'HowToStep',
+					position: index + 1,
+					name: `Claim ${offer.reward} on ${offer.site}`,
+					text: `Use code ${offer.code} on ${offer.site} to claim your reward.`,
+					url: offer.url
+				}))
+			},
+			{
+				'@type': 'FAQPage',
+				mainEntity: [
+					{
+						'@type': 'Question',
+						name: 'Is this really free?',
+						acceptedAnswer: {
+							'@type': 'Answer',
+							text: 'Yes! All cases are completely free. No deposits required.'
+						}
+					},
+					{
+						'@type': 'Question',
+						name: 'How do I withdraw skins?',
+						acceptedAnswer: {
+							'@type': 'Answer',
+							text: 'Each site lets you withdraw skins directly to your Steam account.'
+						}
+					},
+					{
+						'@type': 'Question',
+						name: 'Can I claim from all sites?',
+						acceptedAnswer: {
+							'@type': 'Answer',
+							text: 'Yes! Each site is independent. Complete all 6 for maximum rewards.'
+						}
+					}
+				]
+			}
+		]
+	};
 </script>
 
 <svelte:head>
-	<title>Free Skins Path - Get Free CS2 Cases & Skins | CS2 Giveaways</title>
-	<meta name="description" content="Follow our free skins path to claim 7+ free CS2 cases worth over $3.50! Get free cases from CSGOEmpire, Key-Drop, Howl.gg, Clash.gg, and DatDrop." />
+	<title>How to Get Free CS2 Skins | Step-by-Step Guide 2025</title>
+	<meta
+		name="description"
+		content="The ultimate guide to getting free CS2 skins and cases. Follow our verified path to claim 8+ free cases from trusted sites. No deposit required."
+	/>
+	<meta
+		name="keywords"
+		content="how to get free cs2 skins, free csgo skins guide, free cs2 cases no deposit, farmskins daily free case, csgoempire free case code"
+	/>
+
+	<!-- JSON-LD Structured Data -->
+	{@html `<script type="application/ld+json">${JSON.stringify(schemaOrg)}</script>`}
 </svelte:head>
 
-<div class="min-h-screen bg-gradient-to-b from-[#0f1115] via-[#12141a] to-[#0f1115]">
-	<!-- Hero Section -->
-	<section class="relative overflow-hidden py-16 md:py-24">
-		<!-- Animated background -->
-		<div class="absolute inset-0 overflow-hidden">
-			<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-[120px] animate-pulse"></div>
-			<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] animate-pulse" style="animation-delay: 1s;"></div>
-			<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[150px]"></div>
-		</div>
-		
-		<!-- Floating particles -->
-		<div class="absolute inset-0 overflow-hidden pointer-events-none">
-			{#each Array(20) as _, i}
-				<div
-					class="absolute w-1 h-1 bg-yellow-400/40 rounded-full animate-float"
-					style="left: {Math.random() * 100}%; top: {Math.random() * 100}%; animation-delay: {Math.random() * 5}s; animation-duration: {3 + Math.random() * 4}s;"
-				></div>
-			{/each}
-		</div>
-		
-		<div class="container mx-auto max-w-6xl px-4 relative z-10">
+<div class="min-h-screen bg-[#08090c]">
+	<!-- Hero -->
+	<section class="relative overflow-hidden pt-16 pb-12">
+		<div
+			class="absolute top-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-yellow-500/8 blur-[120px]"
+		></div>
+
+		<div class="relative z-10 container mx-auto max-w-4xl px-4">
 			<div class="text-center">
-				<!-- Badge -->
-				<div class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full mb-6">
-					<span class="relative flex h-2 w-2">
-						<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-						<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-					</span>
-					<span class="text-yellow-400 text-sm font-medium">100% FREE - No Deposit Required</span>
+				<div
+					class="mb-6 inline-flex items-center gap-2 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1"
+				>
+					<div class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400"></div>
+					<span class="text-xs font-medium text-green-400">100% FREE • NO DEPOSIT</span>
 				</div>
-				
-				<!-- Main heading -->
-				<h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-					<span class="text-white">Your Path to</span>
-					<br />
-					<span class="bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 bg-clip-text text-transparent">
-						FREE CS2 SKINS
-					</span>
+
+				<h1 class="mb-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
+					Free Skins Path
 				</h1>
-				
-				<p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
-					Follow this guide to claim <span class="text-white font-semibold">7+ free cases</span> from the best CS2 sites. 
-					No tricks, no deposits - just free skins waiting for you!
+				<p class="mx-auto mb-8 max-w-lg text-lg text-gray-500">
+					Follow the path to claim <span class="text-white">8+ free cases</span> from 6 top sites
 				</p>
-				
-				<!-- Value counter -->
-					<div class="inline-flex flex-col items-center gap-2 p-6 bg-gradient-to-br from-yellow-500/20 to-orange-500/10 border border-yellow-500/30 rounded-2xl">
-						<span class="text-gray-400 text-sm uppercase tracking-wider">Potential Winnings</span>
-						<div class="flex items-baseline gap-1">
-							<span class="text-3xl md:text-4xl font-bold text-yellow-400">$0.50</span>
-							<span class="text-2xl md:text-3xl font-bold text-gray-500 mx-2">to</span>
-							<span class="text-3xl md:text-4xl font-bold text-green-400">$100s</span>
-						</div>
-						<span class="text-gray-400 text-sm font-medium">Open cases, win skins, cash out</span>
+
+				<div class="flex justify-center gap-6 text-sm">
+					<div class="text-center">
+						<div class="text-2xl font-bold text-yellow-400">8+</div>
+						<div class="text-gray-600">Cases</div>
 					</div>
-				
-				<!-- Scroll indicator -->
-				<div class="mt-12 animate-bounce">
-					<svg class="w-8 h-8 mx-auto text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-					</svg>
-					<span class="text-gray-500 text-sm">Scroll to start your journey</span>
+					<div class="w-px bg-white/10"></div>
+					<div class="text-center">
+						<div class="text-2xl font-bold text-green-400">6</div>
+						<div class="text-gray-600">Sites</div>
+					</div>
+					<div class="w-px bg-white/10"></div>
+					<div class="text-center">
+						<div class="text-2xl font-bold text-purple-400">$100s</div>
+						<div class="text-gray-600">Potential</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
 	<!-- Path Section -->
-	<section class="py-16 relative">
-		<div class="container mx-auto max-w-4xl px-4">
-			<!-- Section header -->
-				<div class="text-center mb-16">
-					<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-						Your Free Skins Journey
-					</h2>
-					<p class="text-gray-400">Complete each step to maximize your free rewards</p>
-				</div>
-			
-			<!-- Path timeline -->
+	<section class="py-8 pb-20">
+		<div class="container mx-auto max-w-2xl px-4">
+			<!-- Path wrapper -->
 			<div class="relative">
-				<!-- Vertical line -->
-				<div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-500 via-purple-500 to-green-500 rounded-full md:-translate-x-1/2"></div>
-				
-				<!-- Offer cards -->
-				{#each offers as offer, index}
-					<div 
-						class="relative mb-12 last:mb-0 transition-all duration-700 {visibleSteps.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}"
-						style="transition-delay: {index * 100}ms;"
-					>
-						<!-- Step number -->
-						<div class="absolute left-8 md:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-gradient-to-br {offer.color} flex items-center justify-center text-3xl shadow-lg shadow-black/50 z-10 border-4 border-[#12141a]">
-							{offer.icon}
-						</div>
-						
-						<!-- Card -->
-						<div class="ml-20 md:ml-0 md:w-[calc(50%-3rem)] {index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}">
-							<div class="group relative">
-								<!-- Glow effect -->
-								<div class="absolute -inset-1 bg-gradient-to-r {offer.color} rounded-2xl opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-500"></div>
-								
-								<!-- Card content -->
-								<div class="relative {offer.bgColor} border {offer.borderColor} rounded-2xl p-6 hover:border-opacity-60 transition-all duration-300">
-									<!-- Tag -->
-									<div class="absolute -top-3 right-4">
-										<span class="px-3 py-1 bg-gradient-to-r {offer.color} text-white text-xs font-bold rounded-full shadow-lg">
-											{offer.tag}
-										</span>
-									</div>
-									
-									<!-- Header -->
-									<div class="flex items-start justify-between mb-4">
-										<div>
-											<h3 class="text-xl font-bold text-white mb-1">{offer.site}</h3>
-											<div class="flex items-center gap-2">
-												<span class="text-2xl font-bold text-yellow-400">{offer.reward}</span>
-												<span class="text-gray-500 text-sm">(~${offer.value.toFixed(2)})</span>
+				<!-- Vertical path line -->
+				<div
+					class="absolute top-0 bottom-0 left-6 w-px bg-gradient-to-b from-yellow-500/50 via-purple-500/50 to-pink-500/50"
+				></div>
+
+				<!-- Offers -->
+				<div class="space-y-0">
+					{#each offers as offer, index}
+						<div
+							class="relative transition-all duration-500 {visibleSteps.includes(index)
+								? 'translate-x-0 opacity-100'
+								: '-translate-x-4 opacity-0'}"
+						>
+							<!-- Connector dot -->
+							<div
+								class="absolute top-8 left-6 z-10 h-3 w-3 -translate-x-1/2 rounded-full border-2"
+								style="background: {offer.accentColor}; border-color: {offer.accentColor}"
+							></div>
+
+							<!-- Horizontal connector line -->
+							<div
+								class="absolute top-[34px] left-6 h-px w-8"
+								style="background: linear-gradient(to right, {offer.accentColor}, transparent)"
+							></div>
+
+							<!-- Card -->
+							<div class="ml-16 pb-8">
+								<div
+									class="group relative overflow-hidden rounded-xl border border-white/5 bg-[#0d0e12] transition-all duration-300 hover:border-white/10 hover:bg-[#101117]"
+								>
+									<!-- Top accent -->
+									<div class="h-0.5" style="background: {offer.accentColor}"></div>
+
+									<div class="p-5">
+										<!-- Header -->
+										<div class="mb-3 flex items-start justify-between gap-3">
+											<div class="flex items-center gap-3">
+												<div
+													class="flex h-9 w-9 items-center justify-center rounded-lg text-sm font-bold text-white"
+													style="background: {offer.accentColor}"
+												>
+													{index + 1}
+												</div>
+												<div>
+													<h3 class="font-semibold text-white">{offer.site}</h3>
+													<p class="text-xs text-gray-500">{offer.description}</p>
+												</div>
+											</div>
+											<span
+												class="rounded px-2 py-0.5 text-[10px] font-bold tracking-wide text-white uppercase"
+												style="background: {offer.accentColor}"
+											>
+												{offer.tag}
+											</span>
+										</div>
+
+										<!-- Reward row -->
+										<div class="mb-4 flex items-center justify-between rounded-lg bg-white/3 p-3">
+											<div>
+												<div class="text-[10px] tracking-wider text-gray-500 uppercase">Reward</div>
+												<div class="text-lg font-bold" style="color: {offer.accentColor}">
+													{offer.reward}
+												</div>
+											</div>
+											<div class="text-right">
+												<div class="text-[10px] tracking-wider text-gray-500 uppercase">Value</div>
+												<div class="font-medium text-gray-300">~${offer.value.toFixed(2)}</div>
 											</div>
 										</div>
+
+										<!-- Actions -->
+										<div class="flex gap-2">
+											<button
+												onclick={() => copyCode(offer.code)}
+												class="flex cursor-pointer items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-xs font-medium text-gray-400 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+											>
+												<svg
+													class="h-3.5 w-3.5"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+												>
+													<path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														stroke-width="2"
+														d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+													/>
+												</svg>
+												<span class="font-mono">{offer.code}</span>
+											</button>
+
+											<button
+												onclick={() => handleClaim(offer.url)}
+												class="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold text-white transition-all hover:brightness-110"
+												style="background: {offer.accentColor}"
+											>
+												Claim Now
+												<svg
+													class="h-3.5 w-3.5"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+												>
+													<path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														stroke-width="2"
+														d="M14 5l7 7m0 0l-7 7m7-7H3"
+													/>
+												</svg>
+											</button>
+										</div>
 									</div>
-									
-									<!-- Description -->
-									<p class="text-gray-400 text-sm mb-4">{offer.description}</p>
-									
-									<!-- Steps -->
-									<div class="space-y-2 mb-6">
-										{#each offer.steps as step, stepIndex}
-											<div class="flex items-start gap-3">
-												<div class="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs text-gray-400">
-													{stepIndex + 1}
-												</div>
-												<span class="text-gray-300 text-sm">{step}</span>
-											</div>
-										{/each}
-									</div>
-									
-									<!-- CTA Button -->
-										<button
-											onclick={() => handleClaim(offer.url)}
-											class="w-full py-4 px-6 bg-gradient-to-r {offer.color} hover:opacity-90 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center gap-2 cursor-pointer"
-										>
-										<span>Claim {offer.reward}</span>
-										<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-										</svg>
-									</button>
 								</div>
 							</div>
 						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</section>
-	
-	<!-- Summary Section -->
-	<section class="py-16 relative">
-		<div class="container mx-auto max-w-4xl px-4">
-			<div class="relative">
-				<!-- Glow -->
-				<div class="absolute -inset-4 bg-gradient-to-r from-yellow-500/20 via-green-500/20 to-purple-500/20 rounded-3xl blur-2xl"></div>
-				
-				<!-- Card -->
-				<div class="relative bg-gradient-to-br from-[#1a1d24] to-[#12141a] border border-white/10 rounded-3xl p-8 md:p-12">
-					<div class="text-center mb-8">
-							<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-								Complete the Path & Win Big!
-							</h2>
-							<p class="text-gray-400 max-w-2xl mx-auto">
-								By following all the steps above, you'll have claimed free cases from 5 different sites.
-								That's multiple chances to win valuable CS2 skins - completely FREE!
+					{/each}
+
+					<!-- End marker -->
+					<div class="relative">
+						<div
+							class="absolute top-0 left-6 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-orange-500"
+						>
+							<svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="3"
+									d="M5 13l4 4L19 7"
+								/>
+							</svg>
+						</div>
+						<div class="ml-16 pt-1">
+							<span class="text-xs font-medium text-yellow-400">Path Complete!</span>
+							<p class="text-xs text-gray-600">
+								Check back daily for fresh cases, bonuses & rewards
 							</p>
 						</div>
-					
-					<!-- Stats grid -->
-						<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-							<div class="bg-white/5 rounded-xl p-4 text-center">
-								<div class="text-3xl font-bold text-yellow-400 mb-1">7+</div>
-								<div class="text-gray-400 text-sm">Free Cases</div>
-							</div>
-							<div class="bg-white/5 rounded-xl p-4 text-center">
-								<div class="text-3xl font-bold text-green-400 mb-1">$100s</div>
-								<div class="text-gray-400 text-sm">Potential Wins</div>
-							</div>
-							<div class="bg-white/5 rounded-xl p-4 text-center">
-								<div class="text-3xl font-bold text-purple-400 mb-1">5</div>
-								<div class="text-gray-400 text-sm">Top Sites</div>
-							</div>
-							<div class="bg-white/5 rounded-xl p-4 text-center">
-								<div class="text-3xl font-bold text-orange-400 mb-1">24/7</div>
-								<div class="text-gray-400 text-sm">New Rewards</div>
-							</div>
-						</div>
-					
-					<!-- Pro tips -->
-						<div class="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6">
-							<h3 class="text-lg font-bold text-yellow-400 mb-4">
-								Pro Tips to Maximize Your Winnings
-							</h3>
-						<ul class="space-y-3 text-gray-300 text-sm">
-							<li class="flex items-start gap-3">
-								<span class="text-green-400">✓</span>
-								<span>Complete all 5 sites to get the maximum number of free cases</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-green-400">✓</span>
-								<span>Return to DatDrop daily for your free daily case</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-green-400">✓</span>
-								<span>Check each site for additional daily rewards and bonuses</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-green-400">✓</span>
-								<span>Join case battles for a chance to multiply your winnings</span>
-							</li>
-						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	
-	<!-- FAQ Section -->
-	<section class="py-16">
-		<div class="container mx-auto max-w-4xl px-4">
-			<h2 class="text-3xl font-bold text-white text-center mb-12">
-				Frequently Asked Questions
+
+	<!-- Tips -->
+	<section class="border-t border-white/5 py-12">
+		<div class="container mx-auto max-w-2xl px-4">
+			<h2 class="mb-4 flex items-center gap-2 text-lg font-bold text-white">
+				<svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+					<path
+						fill-rule="evenodd"
+						d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+				Pro Tips
 			</h2>
-			
-			<div class="space-y-4">
-				<div class="bg-white/5 border border-white/10 rounded-xl p-6">
-					<h3 class="text-lg font-semibold text-white mb-2">Is this really free?</h3>
-					<p class="text-gray-400">Yes! All the cases mentioned are completely free. You don't need to deposit any money. Just sign up through our links and claim your rewards.</p>
+			<div class="grid gap-2 sm:grid-cols-2">
+				<div class="flex items-center gap-2 rounded-lg bg-white/3 p-3 text-sm text-gray-400">
+					<span class="text-green-400">✓</span>
+					Complete all 6 sites for max cases
 				</div>
-				
-				<div class="bg-white/5 border border-white/10 rounded-xl p-6">
-					<h3 class="text-lg font-semibold text-white mb-2">How do I withdraw my skins?</h3>
-					<p class="text-gray-400">Each site has its own withdrawal system. Generally, you can withdraw skins directly to your Steam account once you've won them from the cases.</p>
+				<div class="flex items-center gap-2 rounded-lg bg-white/3 p-3 text-sm text-gray-400">
+					<span class="text-green-400">✓</span>
+					Return daily for recurring rewards
 				</div>
-				
-				<div class="bg-white/5 border border-white/10 rounded-xl p-6">
-					<h3 class="text-lg font-semibold text-white mb-2">Can I claim from all sites?</h3>
-					<p class="text-gray-400">Absolutely! Each site is independent, so you can claim free cases from all 5 sites. That's why we recommend completing the entire path!</p>
+				<div class="flex items-center gap-2 rounded-lg bg-white/3 p-3 text-sm text-gray-400">
+					<span class="text-green-400">✓</span>
+					Check for extra daily bonuses
 				</div>
-				
-				<div class="bg-white/5 border border-white/10 rounded-xl p-6">
-					<h3 class="text-lg font-semibold text-white mb-2">Why do you share these codes?</h3>
-					<p class="text-gray-400">We're affiliates of these sites. When you sign up through our links, we earn a small commission - but you get free cases! It's a win-win.</p>
+				<div class="flex items-center gap-2 rounded-lg bg-white/3 p-3 text-sm text-gray-400">
+					<span class="text-green-400">✓</span>
+					Try case battles to multiply wins
 				</div>
 			</div>
 		</div>
 	</section>
-	
-	<!-- CTA Section -->
-	<section class="py-16">
-		<div class="container mx-auto max-w-4xl px-4 text-center">
-			<div class="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full mb-6">
-				<span class="text-green-400 text-sm font-medium">Start claiming now - it only takes 5 minutes!</span>
+
+	<!-- FAQ -->
+	<section class="border-t border-white/5 py-12">
+		<div class="container mx-auto max-w-2xl px-4">
+			<h2 class="mb-4 text-lg font-bold text-white">FAQ</h2>
+			<div class="space-y-2">
+				<details class="group rounded-lg bg-white/3">
+					<summary
+						class="flex cursor-pointer items-center justify-between p-4 text-sm font-medium text-white"
+					>
+						Is this really free?
+						<svg
+							class="h-4 w-4 text-gray-500 transition-transform group-open:rotate-180"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"
+							/>
+						</svg>
+					</summary>
+					<p class="px-4 pb-4 text-sm text-gray-500">
+						Yes! All cases are completely free. No deposits required.
+					</p>
+				</details>
+				<details class="group rounded-lg bg-white/3">
+					<summary
+						class="flex cursor-pointer items-center justify-between p-4 text-sm font-medium text-white"
+					>
+						How do I withdraw skins?
+						<svg
+							class="h-4 w-4 text-gray-500 transition-transform group-open:rotate-180"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"
+							/>
+						</svg>
+					</summary>
+					<p class="px-4 pb-4 text-sm text-gray-500">
+						Each site lets you withdraw skins directly to your Steam account.
+					</p>
+				</details>
+				<details class="group rounded-lg bg-white/3">
+					<summary
+						class="flex cursor-pointer items-center justify-between p-4 text-sm font-medium text-white"
+					>
+						Can I claim from all sites?
+						<svg
+							class="h-4 w-4 text-gray-500 transition-transform group-open:rotate-180"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"
+							/>
+						</svg>
+					</summary>
+					<p class="px-4 pb-4 text-sm text-gray-500">
+						Yes! Each site is independent. Complete all 6 for maximum rewards.
+					</p>
+				</details>
 			</div>
-			
-			<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-				Ready to Get Your Free Skins?
-			</h2>
-			
-			<p class="text-gray-400 mb-8 max-w-xl mx-auto">
-				Scroll back up and start with the first site. Complete all 5 to maximize your free rewards!
-			</p>
-			
-			<button
-					onclick={scrollToTop}
-					class="px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-yellow-500/25 cursor-pointer"
-				>
-					Start Your Free Skins Journey →
-				</button>
 		</div>
 	</section>
 </div>
 
+<!-- Toast -->
+{#if showCopyToast}
+	<div class="animate-slide-up fixed bottom-6 left-6 z-50">
+		<div
+			class="flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2.5 text-sm font-medium text-white shadow-lg"
+		>
+			<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+			</svg>
+			Code copied!
+		</div>
+	</div>
+{/if}
+
 <style>
-	@keyframes float {
-		0%, 100% {
-			transform: translateY(0) translateX(0);
-			opacity: 0.4;
+	@keyframes slide-up {
+		from {
+			transform: translateY(16px);
+			opacity: 0;
 		}
-		50% {
-			transform: translateY(-20px) translateX(10px);
-			opacity: 0.8;
+		to {
+			transform: translateY(0);
+			opacity: 1;
 		}
 	}
-	
-	.animate-float {
-		animation: float 4s ease-in-out infinite;
+	.animate-slide-up {
+		animation: slide-up 0.2s ease-out;
+	}
+
+	details summary::-webkit-details-marker {
+		display: none;
+	}
+	details summary {
+		list-style: none;
 	}
 </style>

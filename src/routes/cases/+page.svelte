@@ -50,6 +50,16 @@
 			affiliateBonus: 'DAILY: Free Case',
 			url: 'https://datdrop.com/p/digipulation',
 			code: 'digipulation'
+		},
+		{
+			id: 6,
+			name: 'Farmskins',
+			logo: '/farmskins.jpg',
+			caseImage: '/farmskins.jpg',
+			brandColor: '#28397F',
+			affiliateBonus: 'DAILY: Free Cases',
+			url: 'https://farmskins.com/ref-digipulation',
+			code: 'digipulation'
 		}
 	];
 
@@ -66,11 +76,34 @@
 			window.open(partner.url, '_blank', 'noopener,noreferrer');
 		}
 	}
+
+	// SEO Data
+	const schemaOrg = {
+		'@context': 'https://schema.org',
+		'@type': 'ItemList',
+		itemListElement: partners.map((partner, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			url: `https://cs2giveaways.com/cases#${partner.name.toLowerCase().replace(/\s+/g, '-')}`,
+			name: `Free ${partner.name} Case`,
+			description: `Claim free ${partner.name} cases with code ${partner.code}. ${partner.affiliateBonus}.`
+		}))
+	};
 </script>
 
 <svelte:head>
-	<title>Partner Gateways | CS2 Giveaways</title>
-	<meta name="description" content="Access exclusive CS2 cases and bonuses from our trusted partner sites. Click any gateway to copy your code and visit instantly." />
+	<title>Free CS2 Cases 2025 | Claim Daily Free Cases & Skins</title>
+	<meta
+		name="description"
+		content="Open free CS2 cases daily! Verified list of sites offering free cases, no deposit needed. Use our codes to claim free skins from Empire, Key-Drop & more."
+	/>
+	<meta
+		name="keywords"
+		content="free cs2 cases, csgo cases free, key-drop free case, csgoempire free case, daily free cases, free skins no deposit"
+	/>
+
+	<!-- JSON-LD Structured Data -->
+	{@html `<script type="application/ld+json">${JSON.stringify(schemaOrg)}</script>`}
 </svelte:head>
 
 <div class="gateway-container">
@@ -88,32 +121,33 @@
 				class="gateway-card"
 				class:is-hovered={hoveredCard === index}
 				style="--brand-color: {partner.brandColor}"
-				onmouseenter={() => hoveredCard = index}
-				onmouseleave={() => hoveredCard = null}
+				role="button"
+				tabindex="0"
+				onmouseenter={() => (hoveredCard = index)}
+				onmouseleave={() => (hoveredCard = null)}
 				onclick={() => handleCardClick(partner)}
+				onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && handleCardClick(partner)}
 			>
 				<!-- Site Identity Badge -->
 				<div class="site-badge">
-					<img 
-						src={partner.logo} 
-						alt="{partner.name} logo"
-						class="site-logo"
-					/>
-					<span class="site-name">{partner.name}</span>
+					<img src={partner.logo} alt="{partner.name} logo" class="site-logo" />
+					<h2 class="site-name" style="font-size: 1.1rem; margin: 0;">{partner.name}</h2>
 				</div>
 
 				<!-- Case Spotlight -->
 				<div class="case-spotlight">
-					<img 
-						src={partner.caseImage} 
-						alt="{partner.name} case"
-						class="case-image"
-					/>
-					
+					<img src={partner.caseImage} alt="{partner.name} case" class="case-image" />
+
 					<!-- Hover Action Button -->
 					<div class="hover-action">
-						<button class="action-button">
-							<svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<button class="action-button" tabindex="-1">
+							<svg
+								class="copy-icon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
 								<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
 								<path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
 							</svg>
@@ -134,9 +168,7 @@
 	<!-- Footer -->
 	<footer class="gateway-footer">
 		<p class="footer-text">All partner sites are verified and trusted</p>
-		<a href="/freeskinspath" class="footer-link">
-			View Complete Free Skins Path →
-		</a>
+		<a href="/freeskinspath" class="footer-link"> View Complete Free Skins Path → </a>
 	</footer>
 </div>
 
@@ -160,7 +192,7 @@
 		font-size: 0.7rem;
 		font-weight: 600;
 		letter-spacing: 0.3em;
-		color: #FBAC18;
+		color: #fbac18;
 		padding: 0.5rem 1rem;
 		background: rgba(251, 172, 24, 0.1);
 		border: 1px solid rgba(251, 172, 24, 0.3);
@@ -176,7 +208,7 @@
 	}
 
 	.accent {
-		color: #FBAC18;
+		color: #fbac18;
 	}
 
 	.header-subtitle {
@@ -209,7 +241,9 @@
 	.gateway-card:hover {
 		transform: translateY(-4px);
 		border-color: var(--brand-color);
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px var(--brand-color);
+		box-shadow:
+			0 8px 32px rgba(0, 0, 0, 0.3),
+			0 0 20px var(--brand-color);
 	}
 
 	/* ===== SITE IDENTITY BADGE ===== */
@@ -309,7 +343,7 @@
 		display: block;
 		font-size: 1.2rem;
 		font-weight: 700;
-		color: #FBAC18;
+		color: #fbac18;
 		text-shadow: 0 0 10px rgba(251, 172, 24, 0.5);
 		margin-bottom: 0.5rem;
 	}
@@ -337,7 +371,7 @@
 		display: inline-block;
 		font-size: 0.9rem;
 		font-weight: 600;
-		color: #FBAC18;
+		color: #fbac18;
 		text-decoration: none;
 		padding: 0.75rem 1.5rem;
 		border: 1px solid rgba(251, 172, 24, 0.3);
@@ -347,7 +381,7 @@
 
 	.footer-link:hover {
 		background: rgba(251, 172, 24, 0.1);
-		border-color: #FBAC18;
+		border-color: #fbac18;
 	}
 
 	/* ===== RESPONSIVE ===== */
