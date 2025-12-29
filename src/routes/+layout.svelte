@@ -94,6 +94,7 @@
 		"description": "The premier destination for CS2 skins, daily free cases, and verified promo codes."
 	}
 	</script>`}
+	<meta name="google-site-verification" content="2NBvOyuFDUEuJNANQiVfvnKIDTFHH3TOUjYuZdVVOWE" />
 </svelte:head>
 
 <div
