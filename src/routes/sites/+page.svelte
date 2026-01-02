@@ -29,6 +29,39 @@ When using it, it never felt like some shady pop-up casino – the license info,
 			color: '#dc2626'
 		},
 		{
+			id: 'duel',
+			name: 'Duel',
+			tagline: 'Fairness & High RTP Revolution',
+			rating: 4.9,
+			image: '/duel-logo.png',
+			affiliateUrl: 'https://duel.com/r/digi',
+			features: [
+				'High RTP (99.9%)',
+				'Zero-Edge Games',
+				'PvP Markets',
+				'Provably Fair',
+				'Live Casino'
+			],
+			bonuses: ['Instant Rakeback', 'No Wager Requirements', 'Daily Rewards'],
+			pros: [
+				'Industry-leading 99.9% RTP',
+				'No wagering requirements on rakeback',
+				'100% real wagers, no fake volume',
+				'Fully provably fair & transparent',
+				'Backed by experienced ownership'
+			],
+			cons: [
+				'Newer platform than legacy sites',
+				'Focus on raw value over flashy minigames',
+				'Zero-edge library still growing'
+			],
+			review: `Duel is built around fixing the core problems in online gambling by prioritizing fairness, transparency, and actual player value. All wagers on the platform use real money, with no fake bets or staged activity, and the site deliberately avoids dark-UX patterns and misleading bonus mechanics. With RTP sitting around 99.9% and a clear goal of reaching 100% on selected games, Duel operates with a far lower house edge than most mainstream casinos.
+			
+Instead of complicated bonuses full of conditions, it offers instant rakeback equal to roughly 50% of the house edge on slots, reducing losses immediately with no strings attached. Rather than chasing short-term profit, Duel is structured around treating users fairly and improving industry standards, positioning itself as a cleaner, more transparent alternative to the typical casino model.`,
+			verdict: 'The new gold standard for fairness and high RTP, perfect for smart players.',
+			color: '#8b5cf6'
+		},
+		{
 			id: 'keydrop',
 			name: 'Key-Drop',
 			tagline: 'Turbo-Charged Case Opening',

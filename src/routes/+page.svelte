@@ -109,6 +109,14 @@
 			color: '#ec4899',
 			url: 'https://farmskins.com/ref-digipulation',
 			code: 'digipulation'
+		},
+		{
+			id: 7,
+			name: 'Duel',
+			reward: '1 Free Case',
+			color: '#8b5cf6',
+			url: 'https://duel.com/r/digi',
+			code: 'digi'
 		}
 	];
 
@@ -300,6 +308,12 @@
 			name: 'Clash.gg',
 			image: '/clashgg-affiliate-offer.jpg',
 			claimUrl: 'https://clash.gg/r/DIGIPULATION'
+		},
+		{
+			id: 4,
+			name: 'Duel',
+			image: '/duel-affiliate.png',
+			claimUrl: 'https://duel.com/r/digi'
 		}
 	];
 
@@ -778,11 +792,10 @@
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
 				</svg>
 			</button>
-
 			<!-- Desktop 3D Carousel -->
 			<div
 				class="relative hidden h-[550px] w-full max-w-5xl cursor-grab touch-none active:cursor-grabbing md:block md:h-[620px]"
-				style="perspective: 1200px;"
+				style="perspective: 1000px;"
 				bind:this={wheelElement}
 				onpointerdown={handleDragStart}
 				onpointermove={handleDragMove}
@@ -799,9 +812,9 @@
 				>
 					{#each exclusiveOffers as offer, index}
 						{@const angle = index * anglePerItem}
-						{@const translateZ = 220}
+						{@const translateZ = 300}
 						<div
-							class="pointer-events-auto absolute top-1/2 left-1/2 w-[300px] -translate-x-1/2 -translate-y-1/2"
+							class="pointer-events-auto absolute top-1/2 left-1/2 w-[280px] -translate-x-1/2 -translate-y-1/2"
 							style="transform: rotateY({angle}deg) translateZ({translateZ}px);"
 						>
 							<a

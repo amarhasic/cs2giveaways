@@ -15,6 +15,17 @@
 		},
 		{
 			id: 2,
+			site: 'Duel',
+			code: 'digi',
+			reward: '1 Free Case',
+			description:
+				'Epic case battles and upgrades await! Claim your free case and start dueling for premium CS2 skins!',
+			url: 'https://duel.com/r/digi',
+			logo: '/duel-logo.png',
+			tag: 'EXCLUSIVE'
+		},
+		{
+			id: 3,
 			site: 'Key-Drop',
 			code: 'DIGIPULATION',
 			reward: '1 Free Case',
@@ -24,7 +35,7 @@
 			tag: 'POPULAR'
 		},
 		{
-			id: 3,
+			id: 4,
 			site: 'Howl.gg',
 			code: 'dpl',
 			reward: '1 Free Case',
@@ -34,7 +45,7 @@
 			tag: 'NEW'
 		},
 		{
-			id: 4,
+			id: 5,
 			site: 'Clash.gg',
 			code: 'DIGIPULATION',
 			reward: '3 Free Cases',
@@ -44,7 +55,7 @@
 			tag: 'BEST VALUE'
 		},
 		{
-			id: 5,
+			id: 6,
 			site: 'DatDrop',
 			code: 'digipulation',
 			reward: 'Daily Free Case',
@@ -54,7 +65,7 @@
 			tag: 'DAILY'
 		},
 		{
-			id: 6,
+			id: 7,
 			site: '500 Casino',
 			code: 'DIGIPULATION',
 			reward: '100% Deposit Bonus + 50 Free Spins',
@@ -64,7 +75,7 @@
 			tag: 'HOT BONUS'
 		},
 		{
-			id: 7,
+			id: 8,
 			site: 'Roobet',
 			code: 'digipulation',
 			reward: 'Rakeback & Rewards',
@@ -74,7 +85,7 @@
 			tag: 'RAKEBACK'
 		},
 		{
-			id: 8,
+			id: 9,
 			site: 'Gamdom',
 			code: 'digipulation',
 			reward: '15% Rakeback + Up to 60%',
@@ -85,7 +96,7 @@
 			tag: 'TOP RAKEBACK'
 		},
 		{
-			id: 9,
+			id: 10,
 			site: 'Farmskins',
 			code: 'digipulation',
 			reward: '$1 Free + Daily Cases',
@@ -95,7 +106,7 @@
 			tag: 'FREE SKINS'
 		},
 		{
-			id: 10,
+			id: 11,
 			site: 'Casehug',
 			code: 'DIGI',
 			reward: '$1 Free + 20% Bonus',
@@ -105,7 +116,7 @@
 			tag: 'BONUS'
 		},
 		{
-			id: 11,
+			id: 12,
 			site: 'CSGOLuck',
 			code: 'DIGI',
 			reward: 'Special Rewards',
